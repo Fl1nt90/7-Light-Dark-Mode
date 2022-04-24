@@ -9,15 +9,12 @@ const DARK_THEME = 'dark';
 const LIGHT_THEME = 'light';
 
 //the localStorage part
-const time = new Date().getHours(); //what time is it now?
+let time = new Date().getHours(); //what time is it now?
 const lStorage = localStorage.getItem('theme');
 
-if (!lStorage && !(time >= 8 && time <= 19)) { //chech if it's day or night..i had to do this way
-    toggleTheme(DARK_THEME);
-} else if (lStorage === 'light') { 
-    toggleTheme(LIGHT_THEME);
-} else toggleTheme(DARK_THEME);
- /* why dark by default? i need to work with time and if statement. 
+if (lStorage) {
+    toggleTheme(lStorage);
+} else if (!(time >= 8 && time <= 19)) toggleTheme(DARK_THEME); /* why check if is NOT day? 
 I can only check hours before midnight, cause at that poit the clock reset to 0 and it's a mess */
 
 
